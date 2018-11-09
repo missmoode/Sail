@@ -1,0 +1,7 @@
+github "JonasGessner/JGProgressHUD" "v2.0.3"
+github "kishikawakatsumi/KeychainAccess" "v3.1.2"
+github "marmelroy/Localize-Swift" "2.0.0"
+github "mxcl/PromiseKit" "6.5.2"
+github "onevcat/Kingfisher" "4.10.1"
+github "saoudrizwan/Disk" "0.4.0"
+github "vapor/multipart" "3.0.2"

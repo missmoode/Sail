@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuAccountView" customModule="Sail" customModuleProvider="target">
+            <connections>
+                <outlet property="acctView" destination="ceK-aY-Smg" id="ft2-j6-MEo"/>
+                <outlet property="avatarView" destination="TbB-w4-Yfe" id="ddo-Wd-wF9"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="aFq-fa-RPS"/>
+                <outlet property="displayNameView" destination="FyY-pX-yeR" id="0hP-PG-cjP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Content">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TbB-w4-Yfe">
+                    <rect key="frame" x="4" y="4" width="92" height="92"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="92" id="MAq-yb-zh7"/>
+                        <constraint firstAttribute="width" secondItem="TbB-w4-Yfe" secondAttribute="height" multiplier="1:1" id="ljW-qc-t1y"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TCw-wc-MZF">
+                    <rect key="frame" x="104" y="27.5" width="267" height="45"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@amelia@octodon.social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ceK-aY-Smg">
+                            <rect key="frame" x="0.0" y="0.0" width="267" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="0.75853488869999997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amelia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FyY-pX-yeR">
+                            <rect key="frame" x="0.0" y="19.5" width="267" height="25.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="vnm-Qj-kws"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="TCw-wc-MZF" firstAttribute="leading" secondItem="TbB-w4-Yfe" secondAttribute="trailing" constant="8" id="1ck-VA-Jdb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TCw-wc-MZF" secondAttribute="trailing" constant="4" id="48D-UY-wy6"/>
+                <constraint firstItem="TbB-w4-Yfe" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="VkB-as-CFB"/>
+                <constraint firstItem="TbB-w4-Yfe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="4" id="iH2-gs-XgP"/>
+                <constraint firstItem="TCw-wc-MZF" firstAttribute="centerY" secondItem="TbB-w4-Yfe" secondAttribute="centerY" id="rjr-wc-H2y"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="138.40000000000001" y="-105.24737631184409"/>
+        </view>
+    </objects>
+</document>
