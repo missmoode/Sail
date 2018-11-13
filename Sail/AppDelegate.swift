@@ -22,21 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // Override point for customization after application launch.
         
-        do {
-            
-            try AccountManager.load()
-            
-            if (AccountManager.accounts.count == 0) {
-                setInitialViewController(UIStoryboard(name: "Setup", bundle: nil).instantiateInitialViewController()!)
-            } else
-            if (AccountManager.currentAccount == nil) {
-                try AccountManager.changeToAccount(AccountManager.accounts.first!.key)
-            } else {
-                setInitialViewController(UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!)
-            }
-        } catch {
-            NSLog("App failure")
-            fatalError("\(error)")
+        if (SessionStore.sessions.count == 0) {
+            setInitialViewController(UIStoryboard(name: "Setup", bundle: nil).instantiateInitialViewController()!)
+        } else
+        if (Preferences.CurrentSessionID.value == nil) {
+            Preferences.CurrentSessionID.value = SessionStore.sessions.first!.key
+        } else {
+            setInitialViewController(UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!)
         }
         
         return true
@@ -86,7 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-        SessionManager.invalidateCache()
     }
 
 }

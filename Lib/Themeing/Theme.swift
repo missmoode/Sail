@@ -28,21 +28,25 @@ extension UIColor {
 }
 
 struct Theme {
+    var name: String
     var statusBarStyle: UIStatusBarStyle
     var primaryTintBackgroundColor: UIColor
     var primaryTintForegroundColor: UIColor
 }
 
 extension Theme {
-    static let light = Theme(
-        statusBarStyle: .default,
-        primaryTintBackgroundColor: UIColor(rgb: 0x5EC9B6),
-        primaryTintForegroundColor: UIColor.white
-    )
-    
-    static let dark = Theme(
-        statusBarStyle: .lightContent,
-        primaryTintBackgroundColor: UIColor(rgb: 242424),
-        primaryTintForegroundColor: UIColor.white
-    )
+    static let themes = [
+        Theme(
+            name: "Light",
+            statusBarStyle: .default,
+            primaryTintBackgroundColor: UIColor(rgb: 0x5EC9B6),
+            primaryTintForegroundColor: UIColor.white
+        ),
+        Theme(
+            name: "Dark",
+            statusBarStyle: .lightContent,
+            primaryTintBackgroundColor: UIColor(rgb: 242424),
+            primaryTintForegroundColor: UIColor.white
+        )
+    ]
 }

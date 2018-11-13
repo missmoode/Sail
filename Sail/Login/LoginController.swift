@@ -22,22 +22,12 @@ class LoginController {
         firstly {
             HTTPUtil.schemeFromDomain(address)
         }.then { scheme in
-            MastodonAPIClient("\(scheme)://\(address)").execute(GetInstanceInfo()).map {_ in scheme}
-        }.then { scheme in
-            APIClient("https://hoist.getsail.app").execute(GetMastodonInfo(address: address)).map {($0, scheme)}
-        }.done { (appInfo, scheme) in
-            var components = URLComponents()
-            components.scheme = scheme
-            components.host = address
-            components.path = "/oauth/authorize"
-            components.queryItems = [
-                URLQueryItem(name: "response_type", value: "code"),
-                URLQueryItem(name: "client_id", value: appInfo.clientId),
-                URLQueryItem(name: "redirect_uri", value: "https://hoist.getsail.app/authentication/authorize"),
-                URLQueryItem(name: "scope", value: "read write follow push"),
-                URLQueryItem(name: "state", value: "{\"scheme\": \"\(scheme)\",\"address\":\"\(address)\"}")
-            ]
-            UIApplication.shared.open(components.url!)
+            address = "\(scheme)://\(address)"
+            return MastodonAPI.Instance.GetInfo().send(with: GenericAPIRequestGateway(apiURL: URL(address)))
+        }.then { instance in
+            HoistAPI.Authentication.GetInstanceInfo(address: address).send(with: HoistAPI.APIGateway)
+        }.done { appInfo in
+            UIApplication.shared.open(MastodonAPI.Oauth.Authorize(clientId: appInfo.clientId, address: address).createHTTPRequest(GenericAPIRequestGateway(apiURL: URL(address)).url))
             completion(nil)
         }.catch { error in
             completion(InstanceConnectError.from(error))
@@ -46,16 +36,9 @@ class LoginController {
     }
     
     static func ingestToken(instance: String, token: String) {
-        firstly {
-            HTTPUtil.schemeFromDomain(instance)
-        }.then { scheme in
-            return MastodonAPIClient("\(scheme)://\(instance)", token: token).execute(VerifyCredentials()).map {($0, scheme)}
-        }.done { (account, scheme) in
-            try AccountManager.addAccount(token: token, instance: AppInstance(name: instance, address: "\(scheme)://\(instance)"), account: account)
-        }.catch { error in
-            print(error)
-        }
-     }
+        let session = LoginSession(instanceURL: URL(string: instance)!, token: token)
+        SessionStore.sessions[session.uuid] = session
+    }
 
 }
 

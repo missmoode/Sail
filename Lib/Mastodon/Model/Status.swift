@@ -9,17 +9,13 @@
 import Foundation
 
 
-struct MStatus: Fetchable {
-    static var fetch: Fetcher = {api, key, completion in
-        api.execute(GetAccount(id: key), completionHandler: completion)
-    }
-    
+struct MStatus: Codable {
     let id: String
     let uri: String
     let url: URL?
     let account: MAccount
-    let inReplyToId: ForeignKey<MStatus>?
-    let inReplyToAccountId: ForeignKey<MAccount>?
+    let inReplyToId: String
+    let inReplyToAccountId: String?
     let reblog: NestWrapper<MStatus>?
     let content: String
     let createdAt: Date

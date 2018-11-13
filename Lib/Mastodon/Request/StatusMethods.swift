@@ -12,7 +12,7 @@ struct GetStatus: APIRequest {
     typealias Response = MStatus
     
     var resourceName: String {
-        return "/statuses/\(self.id)"
+        return "/api/v1/statuses/\(self.id)"
     }
     
     var method: HTTPRequestMethod {

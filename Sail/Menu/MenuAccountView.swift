@@ -16,7 +16,7 @@ class MenuAccountView: UIView, Themed {
         avatarView.backgroundColor = theme.primaryTintForegroundColor
     }
     
-    var account: AppAccount? {
+    var account: MAccount? {
         didSet {
             if let account = account {
                 acctView.text = account.acct

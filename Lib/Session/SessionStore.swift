@@ -7,28 +7,7 @@
 //
 
 import Foundation
-import UIKit
-import KeychainAccess
-import PromiseKit
-import JGProgressHUD
 import Disk
-
-let keychain = Keychain(service: "app.gethoist.sail")
-
-struct LoginSession: Codable {
-    var instanceUrl: URL
-    var accountID: String
-    var cacheID: UUID
-    var loginToken: String {
-        get { return keychain["token/\((cacheID.uuidString+accountID).hashValue)"]! }
-        set { keychain["token/\((cacheID.uuidString+accountID).hashValue)"] = newValue }
-    }
-    var client: MastodonAPIClient {
-        get {
-            return MastodonAPIClient(instanceUrl, token: loginToken)
-        }
-    }
-}
 
 class SessionStore {
     fileprivate static var memCache: [UUID:LoginSession]?

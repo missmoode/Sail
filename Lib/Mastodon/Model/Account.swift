@@ -9,11 +9,7 @@
 import Foundation
 
 
-struct MAccount: Fetchable {
-    static var fetch: Fetcher = {api, key, completion in
-        api.execute(GetAccount(id: key), completionHandler: completion)
-    }
-    
+struct MAccount: Codable {
     let id: String
     let username: String
     let acct: String

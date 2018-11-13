@@ -16,49 +16,44 @@ protocol APIRequest: Encodable, Hashable {
     var method: HTTPRequestMethod { get }
 }
 
-class APIClient {
-    let rootURL: URL
-    let decoder = JSONDecoder()
-    
-    init(_ rootURL: URL) {
-        self.rootURL = rootURL
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-    }
-    
-    func getMutators<T: APIRequest>(for request: T) -> [HTTPRequestMutator] {
-        return []
-    }
-    
-    func execute<T: APIRequest>(_ request: T) -> Promise<T.Response> {
-        return Promise { self.execute(request, completionHandler: $0.resolve) }
-    }
-    
-    func execute<T: APIRequest>(_ request: T, completionHandler: @escaping (T.Response?, Error?) -> Void) {
-        let fullURL = rootURL.appendingPathComponent(request.resourceName)
-        var httpRequest = HTTPRequest(fullURL, method: request.method)
+extension APIRequest {
+    func createHTTPRequest(with gateway: APIRequestGateway) -> HTTPRequest {
+        var httpRequest = HTTPRequest(gateway.apiURL.appendingPathComponent(resourceName), method: method)
         
-        switch request.method {
+        switch method {
         case .get:
-            httpRequest.urlParameters = URLParameterEncoder.encode(request)
+            httpRequest.urlParameters = URLParameterEncoder.encode(self)
             break
         default:
-            httpRequest.data = MultipartEncoder.encode(request)
+            httpRequest.data = MultipartEncoder.encode(self)
             break
         }
         
-        httpRequest.mutate(with: getMutators(for: request))
+        gateway.mutateHTTPRequest(&httpRequest)
         
-        httpRequest.send { httpResponse, data, error in
-            if let error = error {
-                completionHandler(nil, error)
-            } else if let data = data {
-                do {
-                    try completionHandler(self.decoder.decode(T.Response.self, from: data), nil)
-                } catch {
-                    print(error)
-                    completionHandler(nil, APIError.decoding)
+        return httpRequest
+    }
+    
+    func send(with gateway: APIRequestGateway) -> Promise<Response> {
+        return Promise { promise in
+            
+            self.createHTTPRequest(with: gateway).send { httpResponse, data, error in
+                if let error = error {
+                    promise.reject(error)
+                } else if let data = data {
+                    do {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+                        try promise.fulfill(decoder.decode(Response.self, from: data))
+                    } catch {
+                        promise.reject(APIError.decoding)
+                    }
                 }
             }
         }
     }
 }
+
+class HTTPRequestGateway: APIRequestGateway {
+    func sendRequest()
+ }

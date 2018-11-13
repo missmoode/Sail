@@ -8,50 +8,64 @@
 
 import Foundation
 
-struct GetAccount: APIRequest {
-    var resourceName: String {
-        return "/accounts/" + self.id!
-    }
-    
-    var method: HTTPRequestMethod {
-        return .get
-    }
-    
-    typealias Response = MAccount
-    
-    let id: String?
-    
-    init(id: String? = nil) {
-        self.id = id
-    }
-}
 
-struct VerifyCredentials: APIRequest {
-    var resourceName: String {
-        return "/accounts/verify_credentials"
-    }
-    
-    var method: HTTPRequestMethod {
-        return .get
-    }
-    
-    typealias Response = MAccount
-}
-
-struct GetAccountStatuses: APIRequest {
-    typealias Response = MAccount
-    
-    var resourceName: String {
-        return "/accounts/\(self.id)/statuses"
-    }
-    
-    var method: HTTPRequestMethod {
-        return .get
-    }
-    
-    let id: String
-    
-    init(id: String) {
-        self.id = id
+extension MastodonAPI {
+    class Account {
+        struct Get: APIRequest {
+            var resourceName: String {
+                return "/api/v1/accounts/" + self.id!
+            }
+            
+            var method: HTTPRequestMethod {
+                return .get
+            }
+            
+            typealias Response = MAccount
+            
+            let id: String?
+            
+            init(id: String? = nil) {
+                self.id = id
+            }
+        }
+        
+        struct VerifyCredentials: APIRequest {
+            var resourceName: String {
+                return "/api/v1/accounts/verify_credentials"
+            }
+            
+            var method: HTTPRequestMethod {
+                return .get
+            }
+            
+            typealias Response = MAccount
+        }
+        
+        struct GetStatuses: APIRequest {
+            typealias Response = MAccount
+            
+            var resourceName: String {
+                return "/api/v1/accounts/\(self.id)/statuses"
+            }
+            
+            var method: HTTPRequestMethod {
+                return .get
+            }
+            
+            let id: String
+            
+            init(id: String) {
+                self.id = id
+            }
+        }
+        
+        struct CredentialVerificationGateway: APIRequestGateway {
+            let apiURL: URL
+            let token: String
+            
+            func mutateHTTPRequest(_ request: inout HTTPRequest) {
+                request.headers["Authorization"] = "Bearer \(token)"
+            }
+        }
     }
 }

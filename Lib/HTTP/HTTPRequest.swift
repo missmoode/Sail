@@ -8,9 +8,7 @@
 
 import Foundation
 
-typealias HTTPRequestMutator = (inout HTTPRequest) -> Void
-
-struct HTTPRequest {
+struct HTTPRequest: Hashable {
     public var url: URL
     public var method: HTTPRequestMethod
     
@@ -21,16 +19,6 @@ struct HTTPRequest {
     init(_ url: URL, method: HTTPRequestMethod) {
         self.url = url
         self.method = method
-    }
-    
-    public mutating func mutate(with mutators: [HTTPRequestMutator]) {
-        mutators.forEach { mutator in
-            mutator(&self)
-        }
-    }
-    
-    public mutating func mutate(with mutator: HTTPRequestMutator) {
-        mutator(&self)
     }
     
     public func send(completionHandler: @escaping (HTTPURLResponse?, Data?, Error?) -> Void) {

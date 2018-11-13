@@ -12,7 +12,7 @@ struct GetHomeTimeline: APIRequest {
     typealias Response = MStatus
     
     var resourceName: String {
-        return "/timelines/home"
+        return "/api/v1/timelines/home"
     }
     
     var method: HTTPRequestMethod {

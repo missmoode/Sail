@@ -8,14 +8,18 @@
 
 import Foundation
 
-struct GetInstanceInfo: APIRequest {
-    typealias Response = MInstance
-    
-    var resourceName: String {
-        return "/instance"
-    }
-    
-    var method: HTTPRequestMethod {
-        return .get
+extension MastodonAPI {
+    class Instance {
+        struct GetInfo: APIRequest {
+            typealias Response = MInstance
+            
+            var resourceName: String {
+                return "/api/v1/instance"
+            }
+            
+            var method: HTTPRequestMethod {
+                return .get
+            }
+        }
     }
 }

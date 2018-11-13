@@ -18,7 +18,7 @@ class HTTPUtil {
     }
     
     static func schemeFromDomain(_ domain: String, completion: @escaping (String?, HTTPError?) -> Void) {
-        HTTPRequest(address: "http://\(domain)", method: .get).send() { response, data, error in
+        HTTPRequest(URL(string: "http://\(domain)")!, method: .get).send() { response, data, error in
             if (error != nil) {
                 completion(nil, HTTPError.requestFailed)
             }

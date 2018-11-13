@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct MInstance: Decodable {
+struct MInstance: Codable {
     
     let uri: URL
     let title: String

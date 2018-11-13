@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class MenuViewController: UIViewController, Themed, Personalized {
-    func applyPersonalization(account: AppAccount?) {
+    func applyPersonalization(session: LoginSession?) {
         loggedInAccountView.account = account
     }
     

@@ -11,13 +11,13 @@ import UIKit
 import Kingfisher
 
 class MainNavigationController: UINavigationController, Themed, Personalized {
-    func applyPersonalization(account: AppAccount?) {
+    func applyPersonalization(account: MAccount) {
         let imageSize = (self.navigationBar.frame.height) - 6
         
         let processor = RoundCornerImageProcessor(cornerRadius: imageSize / 2)
         
         let menuButton = UIButton(type: .custom)
-        menuButton.kf.setImage(with: AccountManager.currentAccount?.avatar, for: .normal, options:[.processor(processor)])
+        menuButton.kf.setImage(with: account.avatar, for: .normal, options:[.processor(processor)])
         menuButton.widthAnchor.constraint(equalToConstant: imageSize).isActive = true
         menuButton.heightAnchor.constraint(equalToConstant: imageSize).isActive = true
         menuButton.layer.cornerRadius = imageSize / 2
