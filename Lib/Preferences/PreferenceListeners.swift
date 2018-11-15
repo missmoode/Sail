@@ -8,16 +8,15 @@
 
 import Foundation
 
-
 protocol Personalized {
     func applyPersonalization(account: MAccount)
 }
 
 extension Personalized where Self: AnyObject {
     func setUpPersonalisation() {
-        self.applyPersonalization(session: SessionStore.sessions[Preferences.CurrentSessionID.value])
+        self.applyPersonalization(account: SessionStore.sessions[Preferences.CurrentSessionID.value])
         Preferences.CurrentSessionID.subscribable.subscribe(self) { [weak self] newSessionID in
-            self?.applyPersonalization(session: SessionStore.sessions[newSessionID])
+            self?.applyPersonalization(account: SessionStore.sessions[newSessionID])
         }
     }
 }

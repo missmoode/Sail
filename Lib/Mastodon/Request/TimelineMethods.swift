@@ -11,11 +11,11 @@ import Foundation
 struct GetHomeTimeline: APIRequest {
     typealias Response = MStatus
     
-    var resourceName: String {
+    static var resourcePath: String {
         return "/api/v1/timelines/home"
     }
     
-    var method: HTTPRequestMethod {
+    static var method: HTTPRequestMethod {
         return .get
     }
 }

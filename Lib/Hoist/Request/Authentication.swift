@@ -13,18 +13,18 @@ extension HoistAPI {
         struct GetInstanceInfo: APIRequest {
             typealias Response = HMastodonInfo
             
-            var resourceName: String {
-                return "/instances/" + self.address! + "/info"
+            static var resourcePath: String {
+                return "/instances/:_address:/info"
             }
             
-            var method: HTTPRequestMethod {
+            static var method: HTTPRequestMethod {
                 return .get
             }
             
-            let address: String?
+            let _address: String?
             
             init(address: String? = nil) {
-                self.address = address
+                self._address = address
             }
         }
     }

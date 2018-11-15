@@ -21,7 +21,7 @@ struct HTTPRequest: Hashable {
         self.method = method
     }
     
-    public func send(completionHandler: @escaping (HTTPURLResponse?, Data?, Error?) -> Void) {
+    public func send(completionHandler: @escaping (HTTPURLResponse?, Data?, HTTPError?) -> Void) {
         
         
         var urlRequest = URLRequest(url: url)
@@ -40,7 +40,7 @@ struct HTTPRequest: Hashable {
                 if (httpResponse.statusCode == 200) {
                     completionHandler(httpResponse, data, nil)
                 } else {
-                    completionHandler(httpResponse, nil, HTTPError.generic(statusCode: httpResponse.statusCode))
+                    completionHandler(httpResponse, data, HTTPError.generic(statusCode: httpResponse.statusCode))
                 }
             }
         }

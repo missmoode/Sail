@@ -12,11 +12,13 @@ import UIKit
 class MultipartEncoder {
     static let boundary = "--\(UUID().uuidString) \r\n"
     
-    public static func encode(_ encodable: Encodable) -> Data {
+    public static func encode<T: APIRequest>(_ encodable: T) -> Data {
         var body = Data()
         
         Mirror(reflecting: encodable).children.forEach { child in
-            body.append(EncodingStrategy.encode(child.value, withName: child.label!.snakeCased()!))
+            if !(child.label?.starts(with: "_"))! {
+                body.append(EncodingStrategy.encode(child.value, withName: APIUtil.snakeCased(child.label!)!))
+            }
         }
         body.appendString(boundary)
         

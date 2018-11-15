@@ -19,18 +19,42 @@ class LoginController {
         
         // Check if the api endpoint for instance info returns the correct data
         
+        
         firstly {
             HTTPUtil.schemeFromDomain(address)
-        }.then { scheme in
-            address = "\(scheme)://\(address)"
-            return MastodonAPI.Instance.GetInfo().send(with: GenericAPIRequestGateway(apiURL: URL(address)))
-        }.then { instance in
-            HoistAPI.Authentication.GetInstanceInfo(address: address).send(with: HoistAPI.APIGateway)
-        }.done { appInfo in
-            UIApplication.shared.open(MastodonAPI.Oauth.Authorize(clientId: appInfo.clientId, address: address).createHTTPRequest(GenericAPIRequestGateway(apiURL: URL(address)).url))
-            completion(nil)
+        }.done { scheme in
+            
+            let url = URL(string: "\(scheme)://\(address)")!
+            let mastodonClient = APIClient(MastodonAPI.Configuration(url))
+            
+            firstly {
+                mastodonClient.request(MastodonAPI.Instance.GetInfo())
+            }.then { instance in
+                APIClient(HoistAPI.Configuration()).request(HoistAPI.Authentication.GetInstanceInfo(address: address))
+                
+            }.done { appInfo in
+                var request = URLComponents()
+                request.path = "/oauth/authorize"
+                request.queryItems = [
+                    URLQueryItem(name: "responseType", value: "code"),
+                    URLQueryItem(name: "clientID", value: appInfo.clientId),
+                    URLQueryItem(name: "redirectUri", value: "https://hoist.getsail.app/authentication/authorize"),
+                    URLQueryItem(name: "scope", value: "read write follow push"),
+                    URLQueryItem(name: "state", value: "{\"address\": \"\(url.absoluteString)\"}")
+                ]
+                UIApplication.shared.open(request.url(relativeTo: url)!)
+                completion(nil)
+            }.catch { error in
+                switch error {
+                case APIError<HoistAPI.RemoteError>.decodingResponse: return completion(.improperResponse)
+                case APIError<HoistAPI.RemoteError>.requestFailed: return completion(.requestFailed)
+                case APIError<MastodonAPI.RemoteError>.decodingResponse: return completion(.improperResponse)
+                case APIError<MastodonAPI.RemoteError>.requestFailed: return completion(.requestFailed)
+                default: return completion(.generic)
+                }
+            }
         }.catch { error in
-            completion(InstanceConnectError.from(error))
+            return completion(.requestFailed)
         }
         
     }
@@ -42,19 +66,9 @@ class LoginController {
 
 }
 
-enum InstanceConnectError: Error {
-    case connectionFailure
+
+enum InstanceConnectError: LocalizedError {
+    case requestFailed
     case improperResponse
     case generic
-    
-    static func from(_ error: Error) -> InstanceConnectError {
-        switch error {
-        case HTTPError.requestFailed:
-            return .connectionFailure
-        case APIError.decoding: // Couldn't decode to an instance info object, so it's not an instance
-            return .improperResponse
-        default:
-            return .generic
-        }
-    }
 }

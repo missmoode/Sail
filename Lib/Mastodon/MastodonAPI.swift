@@ -9,7 +9,29 @@
 import Foundation
 
 class MastodonAPI {
-    private init() {
+    enum RemoteError: Error {
+        case generic(statusCode: Int, details: String)
+    }
+
+    struct Configuration: APIConfiguration {
+        typealias RemoteAPIError = MastodonAPI.RemoteError
         
+        let rootURL: URL
+        let token: String?
+        
+        init(_ rootURL: URL, token: String? = nil) {
+            self.rootURL = rootURL
+            self.token = token
+        }
+        
+        func mutateHTTPRequest(_ httpRequest: inout HTTPRequest) {
+            if let token = token {
+                httpRequest.headers["Authorization"] = "Bearer \(token)"
+            }
+        }
+        
+        func parseRemoteError(statusCode: Int, data: Data?) -> RemoteError {
+            return RemoteError.generic(statusCode: statusCode, details: "")
+        }
     }
 }

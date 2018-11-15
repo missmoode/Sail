@@ -9,10 +9,14 @@
 import Foundation
 
 class URLParameterEncoder {
-    public static func encode<T: Encodable>(_ encodable: T, convertToSnakeCase: Bool = true) -> [URLQueryItem] {
-        return Mirror(reflecting: encodable).children.map { URLQueryItem(name: $0.label!.snakeCased()!, value: String(describing: $0.value))}
+    public static func encode<T: APIRequest>(_ encodable: T) -> [URLQueryItem] {
+        return Mirror(reflecting: encodable).children.compactMap { child in
+            if !(child.label?.starts(with: "_"))! {
+                return nil
+            } else {
+                return URLQueryItem(name:  APIUtil.snakeCased(child.label!)!, value: String(describing: child.value))
+            }
+            
+        }
     }
-    
-    
-
 }

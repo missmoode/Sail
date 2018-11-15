@@ -13,11 +13,11 @@ extension MastodonAPI {
         struct GetInfo: APIRequest {
             typealias Response = MInstance
             
-            var resourceName: String {
+            static var resourcePath: String {
                 return "/api/v1/instance"
             }
             
-            var method: HTTPRequestMethod {
+            static var method: HTTPRequestMethod {
                 return .get
             }
         }

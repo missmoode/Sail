@@ -11,61 +11,52 @@ import Foundation
 
 extension MastodonAPI {
     class Account {
-        struct Get: APIRequest {
-            var resourceName: String {
-                return "/api/v1/accounts/" + self.id!
+        struct GetInfo: APIRequest {
+            typealias Response = MAccount
+            
+            static var resourcePath: String {
+                return "/api/v1/accounts/:_id:"
             }
             
-            var method: HTTPRequestMethod {
+            static var method: HTTPRequestMethod {
                 return .get
             }
             
-            typealias Response = MAccount
+            let _id: String
             
-            let id: String?
-            
-            init(id: String? = nil) {
-                self.id = id
+            init(id: String) {
+                self._id = id
             }
-        }
-        
-        struct VerifyCredentials: APIRequest {
-            var resourceName: String {
-                return "/api/v1/accounts/verify_credentials"
-            }
-            
-            var method: HTTPRequestMethod {
-                return .get
-            }
-            
-            typealias Response = MAccount
         }
         
         struct GetStatuses: APIRequest {
-            typealias Response = MAccount
+            typealias Response = [MStatus]
             
-            var resourceName: String {
-                return "/api/v1/accounts/\(self.id)/statuses"
+            static var resourcePath: String {
+                return "/api/v1/statuses/:_id:/statuses"
             }
             
-            var method: HTTPRequestMethod {
+            static var method: HTTPRequestMethod {
                 return .get
             }
             
-            let id: String
+            let _id: String
             
             init(id: String) {
-                self.id = id
+                self._id = id
             }
         }
         
-        struct CredentialVerificationGateway: APIRequestGateway {
-            let apiURL: URL
-            let token: String
-            
-            func mutateHTTPRequest(_ request: inout HTTPRequest) {
-                request.headers["Authorization"] = "Bearer \(token)"
+        struct GetSelf: APIRequest {
+            static var resourcePath: String {
+                return "/api/v1/accounts/verify_credentials"
             }
+            
+            static var method: HTTPRequestMethod {
+                return .get
+            }
+            
+            typealias Response = MAccount
         }
     }
 }
