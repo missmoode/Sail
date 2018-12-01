@@ -9,14 +9,14 @@
 import Foundation
 
 protocol Personalized {
-    func applyPersonalization(account: MAccount)
+    func applyPersonalization(session: LoginSession)
 }
 
 extension Personalized where Self: AnyObject {
     func setUpPersonalisation() {
-        self.applyPersonalization(account: SessionStore.sessions[Preferences.CurrentSessionID.value])
-        Preferences.CurrentSessionID.subscribable.subscribe(self) { [weak self] newSessionID in
-            self?.applyPersonalization(account: SessionStore.sessions[newSessionID])
+        self.applyPersonalization(session: Stores.sessionStore.state.currentSession)
+        Stores.sessionStore.subscribe(self) {[weak self] state in
+            self?.applyPersonalization(session: state.currentSession)
         }
     }
 }
@@ -28,9 +28,9 @@ protocol Themed {
 
 extension Themed where Self: AnyObject {
     func setUpThemeing() {
-        self.applyTheme(theme: Theme.themes[Preferences.CurrentThemeIndex.value])
-        Preferences.CurrentThemeIndex.subscribable.subscribe(self) { [weak self] newThemeIndex in
-            self?.applyTheme(theme: Theme.themes[newThemeIndex])
+        self.applyTheme(theme: Stores.themeStore.state.currentTheme)
+        Stores.themeStore.subscribe(self) { [weak self] state in
+            self?.applyTheme(theme: state.currentTheme)
         }
     }
 }

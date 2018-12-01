@@ -1,7 +1,5 @@
 github "JonasGessner/JGProgressHUD"
-github "marmelroy/Localize-Swift"
 github "mxcl/PromiseKit"
 github "kishikawakatsumi/KeychainAccess"
 github "saoudrizwan/Disk"
 github "onevcat/Kingfisher"
-github "ReSwift/ReSwift"

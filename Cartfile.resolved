@@ -1,5 +1,5 @@
 github "JonasGessner/JGProgressHUD" "v2.0.3"
-github "ReSwift/ReSwift" "4.0.1"
+github "alexdrone/Dispatch" "d50071edd519b1cd83c507a9cd4a4cc36145850e"
 github "kishikawakatsumi/KeychainAccess" "v3.1.2"
 github "marmelroy/Localize-Swift" "2.0.0"
 github "mxcl/PromiseKit" "6.5.2"

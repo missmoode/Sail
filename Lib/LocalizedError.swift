@@ -7,10 +7,3 @@
 //
 
 import Foundation
-import Localize_Swift
-
-extension Error {
-    public var localizedDescription: String {
-        return ("error:" + String(describing: type(of: self)) + "_" + String(describing: self)).localized()
-    }
-}
