@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dIh-nL-LHj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Oqu-Ng-Pb7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Connect View Controller-->
+        <!--Setup View Controller-->
         <scene sceneID="3OJ-TL-KLO">
             <objects>
-                <viewController id="Oqu-Ng-Pb7" customClass="ConnectViewController" customModule="Sail" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Sph-JV-rMH">
+                <viewController id="Oqu-Ng-Pb7" customClass="SetupViewController" customModule="Sail" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sph-JV-rMH" customClass="BackgroundView" customModule="Sail" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sail ⛵️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJH-IK-pN9">
-                                <rect key="frame" x="106" y="114" width="163" height="66"/>
+                                <rect key="frame" x="106" y="70" width="163" height="66"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="55"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to Mastodon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAg-QC-BX5">
-                                <rect key="frame" x="63" y="180" width="249" height="31.5"/>
+                                <rect key="frame" x="63" y="136" width="249" height="31.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="c6e-Ec-hQP">
-                                <rect key="frame" x="0.0" y="271.5" width="375" height="159"/>
+                                <rect key="frame" x="0.0" y="254" width="375" height="159"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get started" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LI-fh-8av">
                                         <rect key="frame" x="81.5" y="0.0" width="212.5" height="35"/>
@@ -73,11 +73,12 @@
                         <color key="backgroundColor" red="0.52432947340000002" green="0.82417827070000005" blue="0.75636029689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="JJH-IK-pN9" firstAttribute="top" secondItem="SVN-EE-UnA" secondAttribute="top" constant="50" id="BIv-rx-ZGF"/>
+                            <constraint firstItem="c6e-Ec-hQP" firstAttribute="centerY" secondItem="Sph-JV-rMH" secondAttribute="centerY" id="DhR-hH-6tb"/>
                             <constraint firstItem="UAg-QC-BX5" firstAttribute="top" secondItem="JJH-IK-pN9" secondAttribute="bottom" id="G0V-am-GzG"/>
                             <constraint firstItem="JJH-IK-pN9" firstAttribute="centerX" secondItem="Sph-JV-rMH" secondAttribute="centerX" id="YKe-rz-RpQ"/>
                             <constraint firstItem="c6e-Ec-hQP" firstAttribute="trailing" secondItem="SVN-EE-UnA" secondAttribute="trailing" id="ZIg-MK-Lo9"/>
                             <constraint firstItem="c6e-Ec-hQP" firstAttribute="leading" secondItem="SVN-EE-UnA" secondAttribute="leading" id="aAO-As-ZkG"/>
-                            <constraint firstItem="c6e-Ec-hQP" firstAttribute="top" secondItem="UAg-QC-BX5" secondAttribute="bottom" constant="60" id="cMm-3A-HfW"/>
+                            <constraint firstItem="c6e-Ec-hQP" firstAttribute="centerX" secondItem="Sph-JV-rMH" secondAttribute="centerX" id="cLe-9w-SYO"/>
                             <constraint firstItem="UAg-QC-BX5" firstAttribute="centerX" secondItem="Sph-JV-rMH" secondAttribute="centerX" id="xqv-Am-umf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SVN-EE-UnA"/>
@@ -95,25 +96,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6SJ-fD-eZk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="668" y="158"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="baK-jf-LTc">
-            <objects>
-                <navigationController storyboardIdentifier="setupVC" automaticallyAdjustsScrollViewInsets="NO" id="dIh-nL-LHj" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="v9N-no-6YP">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Oqu-Ng-Pb7" kind="relationship" relationship="rootViewController" id="LZY-iA-p7b"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e0V-jP-L4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-887.20000000000005" y="159.60591133004928"/>
         </scene>
     </scenes>
 </document>

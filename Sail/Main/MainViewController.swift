@@ -10,21 +10,21 @@ import Foundation
 import UIKit
 import Kingfisher
 
-class MainNavigationController: UINavigationController, Themed, Personalized {
-    func applyPersonalization(account: MAccount) {
-        let imageSize = (self.navigationBar.frame.height) - 6
-        
-        let processor = RoundCornerImageProcessor(cornerRadius: imageSize / 2)
-        
-        let menuButton = UIButton(type: .custom)
-        menuButton.kf.setImage(with: account.avatar, for: .normal, options:[.processor(processor)])
-        menuButton.widthAnchor.constraint(equalToConstant: imageSize).isActive = true
-        menuButton.heightAnchor.constraint(equalToConstant: imageSize).isActive = true
-        menuButton.layer.cornerRadius = imageSize / 2
-        menuButton.layer.masksToBounds = true
-        menuButton.addTarget(self, action: #selector(menuButtonAction), for: .touchUpInside)
-        self.menuBarButton = UIBarButtonItem(customView: menuButton)
-    }
+class MainNavigationController: UINavigationController, Themed {
+//    func applyPersonalization(account: MAccount) {
+//        let imageSize = (self.navigationBar.frame.height) - 6
+//        
+//        let processor = RoundCornerImageProcessor(cornerRadius: imageSize / 2)
+//        
+//        let menuButton = UIButton(type: .custom)
+//        menuButton.kf.setImage(with: account.avatar, for: .normal, options:[.processor(processor)])
+//        menuButton.widthAnchor.constraint(equalToConstant: imageSize).isActive = true
+//        menuButton.heightAnchor.constraint(equalToConstant: imageSize).isActive = true
+//        menuButton.layer.cornerRadius = imageSize / 2
+//        menuButton.layer.masksToBounds = true
+//        menuButton.addTarget(self, action: #selector(menuButtonAction), for: .touchUpInside)
+//        self.menuBarButton = UIBarButtonItem(customView: menuButton)
+//    }
     
     @objc func menuButtonAction(sender: UIButton) {
         self.performSegue(withIdentifier: "openMenu", sender: nil)
@@ -40,7 +40,7 @@ class MainNavigationController: UINavigationController, Themed, Personalized {
     
     override func viewDidLoad() {
         setUpThemeing()
-        setUpPersonalisation()
+//        setUpPersonalisation()
         self.delegate = self
         
     }

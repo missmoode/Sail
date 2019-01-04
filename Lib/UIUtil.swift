@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Localize_Swift
 
 extension LocalizedError {
     public var localizedDescription: String {
@@ -32,5 +31,5 @@ func alert(error: LocalizedError) {
             
             
         }}))
-    self.present(alert, animated: true, completion: nil)
+    //alert.present(alert, animated: true, completion: nil)
 }

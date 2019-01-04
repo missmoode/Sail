@@ -61,7 +61,7 @@ class LoginController {
     
     static func ingestToken(instance: String, token: String) {
         let session = LoginSession(instanceURL: URL(string: instance)!, token: token)
-        SessionStore.sessions[session.uuid] = session
+        //SessionStore.sessions[session.uuid] = session
     }
 
 }

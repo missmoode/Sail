@@ -26,8 +26,12 @@
 		E1383BF821B2070A0078069F /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1383BF721B2070A0078069F /* Localization.swift */; };
 		E1383BFA21B2079A0078069F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1383BF921B2079A0078069F /* Strings.swift */; };
 		E1383BFC21B20A040078069F /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1383BFB21B20A040078069F /* Themes.swift */; };
+		E13B1F4221D5BCFC006B0AE6 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13B1F4121D5BCFC006B0AE6 /* Cache.swift */; };
+		E13B1F4521D9D3E2006B0AE6 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13B1F4421D9D3E2006B0AE6 /* Weak.swift */; };
 		E146BA81212F4BCF001B44CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E146BA7F212F4BCF001B44CD /* Main.storyboard */; };
 		E16FD2AB219962F5002E2B02 /* LoginSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16FD2AA219962F5002E2B02 /* LoginSession.swift */; };
+		E174414021DDA9F9003D50AE /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174413F21DDA9F9003D50AE /* BackgroundView.swift */; };
+		E174414221DDAEC1003D50AE /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174414121DDAEC1003D50AE /* SetupViewController.swift */; };
 		E18A56D721944DDE009716AF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A56D621944DDE009716AF /* Theme.swift */; };
 		E18A56DA21944E25009716AF /* PreferenceListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A56D921944E25009716AF /* PreferenceListeners.swift */; };
 		E18A56DE2194848B009716AF /* TimelineMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A56DD2194848B009716AF /* TimelineMethods.swift */; };
@@ -60,6 +64,7 @@
 		E1BAC07F212CB87E007FBAF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BAC07E212CB87E007FBAF3 /* AppDelegate.swift */; };
 		E1BAC086212CB87F007FBAF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1BAC085212CB87F007FBAF3 /* Assets.xcassets */; };
 		E1BAC089212CB87F007FBAF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1BAC087212CB87F007FBAF3 /* LaunchScreen.storyboard */; };
+		E1BD9A5C21DEE90000DF5849 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BD9A5B21DEE90000DF5849 /* Flow.swift */; };
 		E1C3154421890C090006A11A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C3154321890C090006A11A /* LoginViewController.swift */; };
 		E1D661B621836D6F002761E2 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D661B521836D6F002761E2 /* Account.swift */; };
 		E1D84FA02196010B00042A31 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E1D84F9F2196010B00042A31 /* .gitignore */; };
@@ -112,8 +117,12 @@
 		E1383BF721B2070A0078069F /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		E1383BF921B2079A0078069F /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		E1383BFB21B20A040078069F /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
+		E13B1F4121D5BCFC006B0AE6 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		E13B1F4421D9D3E2006B0AE6 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		E146BA80212F4BCF001B44CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E16FD2AA219962F5002E2B02 /* LoginSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSession.swift; sourceTree = "<group>"; };
+		E174413F21DDA9F9003D50AE /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		E174414121DDAEC1003D50AE /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		E18A56D621944DDE009716AF /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		E18A56D921944E25009716AF /* PreferenceListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceListeners.swift; sourceTree = "<group>"; };
 		E18A56DD2194848B009716AF /* TimelineMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineMethods.swift; sourceTree = "<group>"; };
@@ -148,6 +157,7 @@
 		E1BAC085212CB87F007FBAF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1BAC088212CB87F007FBAF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1BAC08A212CB87F007FBAF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1BD9A5B21DEE90000DF5849 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		E1C3154321890C090006A11A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E1D661B521836D6F002761E2 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		E1D84F9F2196010B00042A31 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -206,16 +216,32 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		E16FD2A721995A43002E2B02 /* Preferences */ = {
+		E13B1F4321D9D3CF006B0AE6 /* Store */ = {
 			isa = PBXGroup;
 			children = (
 				E1383BF221B0BA270078069F /* Store.swift */,
+				E13B1F4121D5BCFC006B0AE6 /* Cache.swift */,
+				E13B1F4421D9D3E2006B0AE6 /* Weak.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		E16FD2A721995A43002E2B02 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
 				E1D84FA72197E69000042A31 /* Preferences.swift */,
 				E18A56D921944E25009716AF /* PreferenceListeners.swift */,
 				E1AF531F218D3500009C9D91 /* Sessions.swift */,
 				E1383BFB21B20A040078069F /* Themes.swift */,
 			);
 			path = Preferences;
+			sourceTree = "<group>";
+		};
+		E174413B21DDA962003D50AE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		E18A56CD2193D2B1009716AF /* Themeing */ = {
@@ -299,6 +325,8 @@
 			isa = PBXGroup;
 			children = (
 				E1AF5310218C84CB009C9D91 /* Setup.storyboard */,
+				E174413F21DDA9F9003D50AE /* BackgroundView.swift */,
+				E174414121DDAEC1003D50AE /* SetupViewController.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -363,6 +391,8 @@
 		E1D242532180C0FF00D3F350 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				E174413B21DDA962003D50AE /* UI */,
+				E13B1F4321D9D3CF006B0AE6 /* Store */,
 				E1E0EF62219AD84900F68A0F /* API */,
 				E16FD2A721995A43002E2B02 /* Preferences */,
 				E18A56E12195B767009716AF /* Session */,
@@ -374,6 +404,7 @@
 				E1B0F608218ECFAA00B9A13A /* UIUtil.swift */,
 				E1383BF721B2070A0078069F /* Localization.swift */,
 				E1383BF921B2079A0078069F /* Strings.swift */,
+				E1BD9A5B21DEE90000DF5849 /* Flow.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -507,6 +538,7 @@
 				E1383BF321B0BA270078069F /* Store.swift in Sources */,
 				E1D661B621836D6F002761E2 /* Account.swift in Sources */,
 				E19F0FBA21902DA900BE1BA0 /* Application.swift in Sources */,
+				E174414021DDA9F9003D50AE /* BackgroundView.swift in Sources */,
 				E1E0EF86219B0CB000F68A0F /* URLParameterEncoder.swift in Sources */,
 				E1E0EF87219B0CB000F68A0F /* MultipartEncoder.swift in Sources */,
 				E1D84FA82197E69000042A31 /* Preferences.swift in Sources */,
@@ -520,6 +552,7 @@
 				E1383BFA21B2079A0078069F /* Strings.swift in Sources */,
 				E18A56DA21944E25009716AF /* PreferenceListeners.swift in Sources */,
 				E1DC3D8921828D4C0099D452 /* StatusView.swift in Sources */,
+				E174414221DDAEC1003D50AE /* SetupViewController.swift in Sources */,
 				E1C3154421890C090006A11A /* LoginViewController.swift in Sources */,
 				E1383BF821B2070A0078069F /* Localization.swift in Sources */,
 				E19F0FAE21902A9300BE1BA0 /* Field.swift in Sources */,
@@ -529,6 +562,7 @@
 				E1AF532E218E19FD009C9D91 /* LoginController.swift in Sources */,
 				E19F0FA62190145200BE1BA0 /* Emoji.swift in Sources */,
 				E1BAC07F212CB87E007FBAF3 /* AppDelegate.swift in Sources */,
+				E1BD9A5C21DEE90000DF5849 /* Flow.swift in Sources */,
 				E1D84FB02198FCC700042A31 /* HoistAPI.swift in Sources */,
 				E1AF5320218D3500009C9D91 /* Sessions.swift in Sources */,
 				E1B19FAC218F176F00B5C014 /* MenuViewController.swift in Sources */,
@@ -540,8 +574,10 @@
 				E1D84FB32198FCEE00042A31 /* MastodonInfo.swift in Sources */,
 				E1D84FAC2198FB7B00042A31 /* MastodonAPI.swift in Sources */,
 				E19F0FAC21902A6E00BE1BA0 /* StatusVisibility.swift in Sources */,
+				E13B1F4521D9D3E2006B0AE6 /* Weak.swift in Sources */,
 				E19F0FBC21904FB900BE1BA0 /* HTTPRequest.swift in Sources */,
 				E19F0FA8219015E400BE1BA0 /* Attachment.swift in Sources */,
+				E13B1F4221D5BCFC006B0AE6 /* Cache.swift in Sources */,
 				E11C1661219C88F500E5FCA6 /* NestWrapper.swift in Sources */,
 				E19F0FA021900A0800BE1BA0 /* InstanceMethods.swift in Sources */,
 				E1E0EF70219AF61B00F68A0F /* Client.swift in Sources */,
@@ -688,6 +724,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GA7D6XST8V;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -704,6 +741,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zone.amy.Sail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -713,6 +751,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GA7D6XST8V;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -729,6 +768,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zone.amy.Sail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

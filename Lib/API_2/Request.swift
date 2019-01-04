@@ -15,7 +15,7 @@ protocol APIRequest: Hashable {
     static var method: HTTPRequestMethod { get }
 }
 
-enum APIRequestError {
+enum APIRequestError: Error {
     case resolvingPath
 }
 

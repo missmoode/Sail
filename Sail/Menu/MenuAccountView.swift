@@ -47,7 +47,7 @@ class MenuAccountView: UIView, Themed {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        avatarView.makeRounded()
+        //avatarView.makeRounded()
     }
     
     override func awakeFromNib() {

@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class MenuViewController: UIViewController, Themed, Personalized {
-    func applyPersonalization(session: LoginSession?) {
-        loggedInAccountView.account = account
-    }
+class MenuViewController: UIViewController, Themed {
+//    func applyPersonalization(session: LoginSession?) {
+//        loggedInAccountView.account = account
+//    }
     
     func applyTheme(theme: Theme) {
         
@@ -33,7 +33,7 @@ class MenuViewController: UIViewController, Themed, Personalized {
     
     override func viewDidLoad() {
         setUpThemeing()
-        setUpPersonalisation()
+        //setUpPersonalisation()
     }
 }
  

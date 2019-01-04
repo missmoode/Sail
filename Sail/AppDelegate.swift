@@ -22,11 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // Override point for customization after application launch.
         
-        if (SessionStore.sessions.count == 0) {
+        if (Stores.sessionStore.state.sessionsList.count == 0) {
             setInitialViewController(UIStoryboard(name: "Setup", bundle: nil).instantiateInitialViewController()!)
         } else
-        if (Preferences.CurrentSessionID.value == nil) {
-            Preferences.CurrentSessionID.value = SessionStore.sessions.first!.key
+        if (Stores.sessionStore.state.currentSession == nil) {
+            Stores.sessionStore.dispatch(.setCurrent(Stores.sessionStore.state.sessionsList.first!))
         } else {
             setInitialViewController(UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!)
         }

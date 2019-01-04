@@ -8,10 +8,6 @@
 
 import Foundation
 
-struct Weak<Object: AnyObject> {
-    weak var value: Object?
-}
-
 struct Store<Model, Action> {
     typealias Reducer = (Action, Model) -> Model
     

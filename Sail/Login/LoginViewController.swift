@@ -9,7 +9,6 @@
 import UIKit
 import JGProgressHUD
 import PromiseKit
-import Localize_Swift
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var instanceEntry: UITextField!

@@ -20,9 +20,10 @@ enum APIError<RemoteAPIError: Error>: Error {
 class APIClient<Configuration: APIConfiguration> {
     typealias Error = APIError<Configuration.RemoteAPIError>
     
-    let error = Error.self
+    private let error = Error.self
+    private let decoder = JSONDecoder()
+    
     let configuration: Configuration
-    let decoder = JSONDecoder()
     
     init(_ configuration: Configuration) {
         self.configuration = configuration
@@ -71,7 +72,7 @@ class APIClient<Configuration: APIConfiguration> {
     
     // MARK: Redundant Requests
     
-    var activeRequests: [Int:[(Decodable?, Error?) -> Void]] = [:]
+    private var activeRequests: [Int:[(Decodable?, Error?) -> Void]] = [:]
     
     fileprivate func fulfil<Request: APIRequest>(_ request: Request, completionHandler: @escaping (Request.Response?, Error?) -> Void) {
         var requests = activeRequests[request.hashValue] ?? []
@@ -97,7 +98,7 @@ class APIClient<Configuration: APIConfiguration> {
     
     // MARK: Cache
     
-    var cache: [Int: CacheRecord] = [:]
+    private var cache: [Int: CacheRecord] = [:]
     
     fileprivate func request<Request: APIRequest>(_ request: Request, forceNew: Bool, completionHandler: @escaping (Request.Response?, Error?) -> Void) {
         if let record = cache[request.hashValue] {
@@ -112,11 +113,15 @@ class APIClient<Configuration: APIConfiguration> {
     }
     
     struct CacheRecord {
-        let expireDate: Date
+        var expireDate: Date
         let content: Decodable
         
         func hasExpired() -> Bool {
             return expireDate.timeIntervalSinceNow.sign == .minus
+        }
+        
+        mutating func expire() {
+            expireDate = Date.init()
         }
     }
     
