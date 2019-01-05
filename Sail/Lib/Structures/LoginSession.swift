@@ -11,11 +11,11 @@ import KeychainAccess
 
 let keychain = Keychain(service: "app.gethoist.sail")
 
-struct LoginSession {
+struct LoginSession: Codable {
     public let uuid: UUID
     public let instanceUrl: URL
     public lazy var client = APIClient(MastodonAPI.Configuration(instanceUrl, token: loginToken))
-    public let store: Store<SessionState, SessionState.Action>
+//    public let store: Store<SessionState>
     
     var loginToken: String {
         get { return keychain["token/\(instanceUrl.absoluteString.hashValue)\(uuid.uuidString.hashValue))"]! }
@@ -25,17 +25,15 @@ struct LoginSession {
     init(instanceURL: URL, token: String) {
         self.instanceUrl = instanceURL
         self.uuid = UUID()
-        self.store = Store<SessionState, SessionState.Action>(SessionState.reducer, with: SessionState(uuid))
+//        self.store = Store<SessionState>(SessionState.reducer, with: SessionState(uuid))
         
         self.loginToken = token
     }
-}
-
-extension LoginSession: Codable {
+    
     private enum CodingKeys: String, CodingKey {
         case uuid
         case instanceUrl
-        case store = "state"
+        //        case store = "state"
     }
     
     
@@ -44,7 +42,7 @@ extension LoginSession: Codable {
         self.instanceUrl = try values.decode(URL.self, forKey: .instanceUrl)
         self.uuid = try values.decode(UUID.self, forKey: .uuid)
         
-        self.store = Store<SessionState, SessionState.Action>(SessionState.reducer, with: try values.decode(SessionState.self, forKey: .store))
+        //        self.store = Store<SessionState, SessionState.Action>(SessionState.reducer, with: try values.decode(SessionState.self, forKey: .store))
     }
     
     func encode(to encoder: Encoder) throws {
@@ -52,7 +50,7 @@ extension LoginSession: Codable {
         try container.encode(uuid, forKey: .uuid)
         try container.encode(instanceUrl, forKey: .instanceUrl)
         
-        try container.encode(store.state, forKey: .store)
+        //        try container.encode(store.state, forKey: .store)
     }
 }
 
@@ -65,11 +63,11 @@ struct SessionState: Codable {
         timelines = [:]
     }
     
-    public enum Action {
+    public enum Update {
         case REFRESH
     }
     
-    static var reducer: (Action, SessionState) -> SessionState {
+    static var reducer: (Any, SessionState) -> SessionState {
         return {action, state in
             return state
         }

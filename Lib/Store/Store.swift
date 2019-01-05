@@ -8,8 +8,16 @@
 
 import Foundation
 
-struct Store<Model, Action> {
-    typealias Reducer = (Action, Model) -> Model
+protocol Action {
+    func run(_ completionHandler: @escaping (Any?, Error?) -> Void)
+}
+
+protocol StoreType {
+    func apply(_ update: Any)
+}
+
+class Store<Model>: StoreType {
+    typealias Reducer = (Any, Model) -> Model
     
     private typealias Subscription = (object: Weak<AnyObject>, handler: (Model) -> Void)
     private var subscriptions: [Subscription] = []
@@ -29,19 +37,53 @@ struct Store<Model, Action> {
         self.state = state
     }
     
-    mutating func dispatch(_ action: Action) {
-        self.state = self.reducer(action, self.state)
+    func apply(_ update: Any) {
+        self.state = self.reducer(update, self.state)
     }
     
     
-    private mutating func cleanupSubscriptions() {
+    private func cleanupSubscriptions() {
         subscriptions = subscriptions.filter({ entry in
             return entry.object.value != nil
         })
     }
     
-    mutating func subscribe(_ object: AnyObject, handler: @escaping (Model) -> Void) {
+    func subscribe(_ object: AnyObject, handler: @escaping (Model) -> Void) {
         cleanupSubscriptions()
         subscriptions.append(Subscription(object: Weak(value: object), handler: handler))
+    }
+}
+
+class AppDispatcher {
+    static private var stores: [StoreType] = []
+    
+    private init() {
+        
+    }
+    
+    static func connectStore<Model>(_ store: Store<Model>) {
+        stores.append(store)
+    }
+    
+    static func dispatch(_ action: Action, completionHandler: @escaping (Error?) -> Void) {
+        print("Dispatching action: " + String(describing: action))
+        action.run { (update, error) in
+            if let update = update {
+                for store in stores {
+                    store.apply(update)
+                }
+                completionHandler(nil)
+            } else if let error = error {
+                completionHandler(error)
+            } else {
+                completionHandler(nil)
+            }
+        }
+    }
+    
+    static func dispatch(_ action: Action) {
+        dispatch(action) { (error) in
+            
+        }
     }
 }

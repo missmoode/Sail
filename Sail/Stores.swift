@@ -13,20 +13,20 @@ var userDefaults = UserDefaults.standard
 struct StateDefaults {
     private static var decoder = JSONDecoder()
     
-    let sessions: SessionsModel
-    let themes: ThemeModel
+    let sessions: [LoginSession]
+    let settings: SettingsContainer
     
     public static func load() -> StateDefaults {
         return StateDefaults(
-            sessions: loadOrDefault(SessionsModel.self, default: SessionsModel(currentSessionIndex: -1, sessionsList: [])),
-            themes: loadOrDefault(ThemeModel.self, default: ThemeModel(currentThemeIndex: 0))
+            sessions: loadOrDefault("sessions", default: []),
+            settings: loadOrDefault("settings", default: SettingsContainer())
         )
     }
     
-    private static func loadOrDefault<Model: Decodable>(_ model: Model.Type, default state: Model) -> Model {
-        if let data = userDefaults.data(forKey: String(describing: model)) {
+    private static func loadOrDefault<Model: Decodable>(_ key: String, default state: Model) -> Model {
+        if let data = userDefaults.data(forKey: key) {
             do {
-                return try decoder.decode(model, from: data)
+                return try decoder.decode(type(of: state), from: data)
             } catch {
                 // TODO display alert saying error occured and we have to reset to default
             }
@@ -40,8 +40,8 @@ struct Stores {
     
     private static var defaults: StateDefaults = StateDefaults.load()
     
-    static var sessionStore = Store<SessionsModel, SessionsModel.Action>(SessionsModel.reducer, with: defaults.sessions)
-    static var themeStore = Store<ThemeModel, ThemeModel.Action>(ThemeModel.reducer, with: defaults.themes)
+    static var sessionStore = Store(SessionStoreReducer, with: defaults.sessions)
+    static var settingsStore = Store(SettingStoreReducer, with: defaults.settings)
     
     class SaveLink {
         static let `default` = SaveLink()
@@ -49,7 +49,7 @@ struct Stores {
     
     static func beginSaving() {
         sessionStore.subscribe(SaveLink.default, handler: save)
-        themeStore.subscribe(SaveLink.default, handler: save)
+        settingsStore.subscribe(SaveLink.default, handler: save)
     }
     
     private static func save<Model: Encodable>(state: Model) {

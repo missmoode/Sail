@@ -22,14 +22,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // Override point for customization after application launch.
         
-        if (Stores.sessionStore.state.sessionsList.count == 0) {
+        AppDispatcher.connectStore(Stores.sessionStore)
+        AppDispatcher.connectStore(Stores.settingsStore)
+        
+        if (Stores.sessionStore.state.count == 0) {
             setInitialViewController(UIStoryboard(name: "Setup", bundle: nil).instantiateInitialViewController()!)
-        } else
-        if (Stores.sessionStore.state.currentSession == nil) {
-            Stores.sessionStore.dispatch(.setCurrent(Stores.sessionStore.state.sessionsList.first!))
-        } else {
-            setInitialViewController(UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!)
         }
+//        if (Stores.sessionStore.state.currentSession == nil) {
+//            Stores.sessionStore.dispatch(.setCurrent(Stores.sessionStore.state.sessionsList.first!))
+//        } else {
+//            setInitialViewController(UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!)
+//        }
         
         return true
     }
@@ -48,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case "oauth/addToken":
             let token = (params.first(where: { $0.name == "token" })?.value)!
             let address = (params.first(where: { $0.name == "address" })?.value)!
-            LoginController.ingestToken(instance: address, token: token)
+            AppDispatcher.dispatch(TokenIngestAction(token: token, address: address))
             return true
         default:
             return false

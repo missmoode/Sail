@@ -14,10 +14,10 @@ protocol Personalized {
 
 extension Personalized where Self: AnyObject {
     func setUpPersonalisation() {
-        self.applyPersonalization(session: Stores.sessionStore.state.currentSession)
-        Stores.sessionStore.subscribe(self) {[weak self] state in
-            self?.applyPersonalization(session: state.currentSession)
-        }
+//        self.applyPersonalization(session: Stores.sessionStore.state.currentSession)
+//        Stores.sessionStore.subscribe(self) {[weak self] state in
+//            self?.applyPersonalization(session: state.currentSession)
+//        }
     }
 }
 
@@ -28,8 +28,8 @@ protocol Themed {
 
 extension Themed where Self: AnyObject {
     func setUpThemeing() {
-        self.applyTheme(theme: Stores.themeStore.state.currentTheme)
-        Stores.themeStore.subscribe(self) { [weak self] state in
+        self.applyTheme(theme: Stores.settingsStore.state.currentTheme)
+        Stores.settingsStore.subscribe(self) { [weak self] state in
             self?.applyTheme(theme: state.currentTheme)
         }
     }

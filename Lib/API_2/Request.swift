@@ -32,10 +32,13 @@ extension APIRequest {
             results.map {
                 String(path[Range($0.range(at: 1), in: path)!])
             }.forEach { param in
-                let value = mirror.children.first(where: {$0.label == param})?.value
+                let value = mirror.children.first(where: {$0.label == param})!.value
                 
-                path = path.replacingOccurrences(of: path, with: String(describing: value))
+                path = path.replacingOccurrences(of: ":" + param + ":", with: String(describing: value))
             }
+            
+            
+            print("Path" + path)
             
             return path
         } catch {

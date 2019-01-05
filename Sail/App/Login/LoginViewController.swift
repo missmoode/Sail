@@ -51,16 +51,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         if (match) {
             lockInterface()
-            LoginController.attemptLogin(address: address, completion: {error in
+            
+            AppDispatcher.dispatch(AuthenticateAction(address: address)) {error in
                 DispatchQueue.main.async {
                     self.unlockInterface()
                     if let error = error {
                         self.displayError(error.localizedDescription)
                     } else {
-                        self.performSegue(withIdentifier: "toLoading", sender: nil)
+//                        self.performSegue(withIdentifier: "toLoading", sender: nil)
                     }
                 }
-            })
+            }
         } else {
             displayError("flow:connect_addressInvalid".localized())
         }

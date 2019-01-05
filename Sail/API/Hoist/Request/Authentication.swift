@@ -21,9 +21,9 @@ extension HoistAPI {
                 return .get
             }
             
-            let _address: String?
+            let _address: String
             
-            init(address: String? = nil) {
+            init(address: String) {
                 self._address = address
             }
         }
